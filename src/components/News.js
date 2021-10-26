@@ -1,0 +1,34 @@
+import React from "react";
+import { collection, getDocs, query, onSnapshot, docs } from 'firebase/firestore'
+import { useState, useEffect } from 'react';
+import { HiAnnotation,  HiDocument, HiExclamation, HiSpeakerphone, HiCalendar, HiUser } from 'react-icons/hi';
+
+const News = (props) => {
+
+    const [announcements, setAnnouncements] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+            onSnapshot(collection(props.firestore, 'announcements'), (snapshot) => {
+                setAnnouncements(snapshot.docs.map((doc) => doc.data()))
+                console.log(snapshot.docs.map((doc) => doc.data()))
+            })
+        }
+        getData();
+    }, [])
+
+    return (
+        <div className="bg-primary h-screen overflow-y-auto flex flex-col items-center text-white pt-16 pb-2">
+                {announcements.map((ann)=>
+                (
+                <div key={ann.id} className="bg-secondary py-4 px-6 rounded my-4 w-2/5">
+                    <p className="font-semibold text-2xl flex items-center mb-0"><HiAnnotation className="text-md mr-2"/>{ann.title}</p>
+                    <p className="text-xs  mb-3 opacity-60 flex items-center"><HiCalendar className="mr-1"/>{ann.date}<HiUser className="mr-1 ml-2"/>{ann.author}</p>
+                    <p className="">{ann.message}</p>
+                </div>
+                ))}
+        </div>
+    );
+}
+
+export default News;
