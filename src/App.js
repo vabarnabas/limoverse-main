@@ -16,6 +16,7 @@ import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } 
 import { getFirestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
+import {initializeFirestore} from 'firebase/firestore'; 
 
 //Firebase Config
 const firebaseConfig = {
@@ -29,6 +30,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+initializeFirestore({experimentalForceLongPolling: true});
 
 //Set Up Authentication
 const auth = getAuth(app);
