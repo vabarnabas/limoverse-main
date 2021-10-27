@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/limoverse-main/static/css/main.31e288f0.chunk.css",
-    "main.js": "/limoverse-main/static/js/main.b691e3e7.chunk.js",
-    "main.js.map": "/limoverse-main/static/js/main.b691e3e7.chunk.js.map",
+    "main.js": "/limoverse-main/static/js/main.4a1d89ef.chunk.js",
+    "main.js.map": "/limoverse-main/static/js/main.4a1d89ef.chunk.js.map",
     "runtime-main.js": "/limoverse-main/static/js/runtime-main.98022de7.js",
     "runtime-main.js.map": "/limoverse-main/static/js/runtime-main.98022de7.js.map",
     "static/js/2.9da56a94.chunk.js": "/limoverse-main/static/js/2.9da56a94.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.98022de7.js",
     "static/js/2.9da56a94.chunk.js",
     "static/css/main.31e288f0.chunk.css",
-    "static/js/main.b691e3e7.chunk.js"
+    "static/js/main.4a1d89ef.chunk.js"
   ]
 }
