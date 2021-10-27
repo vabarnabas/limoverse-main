@@ -35,7 +35,7 @@ const auth = getAuth(app);
 
 function App() {
   const[user] = useAuthState(auth);
-  const firestore = getFirestore(app);
+  const firestore = getFirestore(app).settings({experimentalForceLongPolling: true});
 
   const [isLogin, setLogin] = useState(false);
 
