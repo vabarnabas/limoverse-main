@@ -10,8 +10,8 @@ import { HiFingerPrint, HiLogout, HiStatusOffline } from 'react-icons/hi';
 import { FaSignOutAlt } from 'react-icons/fa'
 
 //Hooks & Others
-import firebase from 'firebase/app';
-import 'firebase/firestore'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore'
 import { useState, useEffect } from 'react';
 import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
@@ -31,14 +31,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-initializeFirestore({experimentalForceLongPolling: true});
+initializeFirestore(app, {experimentalForceLongPolling: true});
 
 //Set Up Authentication
 const auth = getAuth(app);
 
 function App() {
   const[user] = useAuthState(auth);
-  const firestore = getFirestore(app).settings({experimentalForceLongPolling: true});
+  const firestore = getFirestore(app);
 
   const [isLogin, setLogin] = useState(false);
 
