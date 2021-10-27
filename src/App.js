@@ -10,6 +10,7 @@ import { HiFingerPrint, HiLogout, HiStatusOffline } from 'react-icons/hi';
 import { FaSignOutAlt } from 'react-icons/fa'
 
 //Hooks & Others
+import firebase from 'firebase/app';
 import 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
