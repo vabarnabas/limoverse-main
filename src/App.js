@@ -37,20 +37,22 @@ function App() {
   const[user] = useAuthState(auth);
   const firestore = getFirestore(app);
 
+  const [isLogin, setLogin] = useState(false);
+
   const onSignOut = () => {
       signOut(auth);
   }
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
-      {user ? '' : <Login auth={auth}/>}
+      {isLogin ? (user ? '' : <Login onClick={() => setLogin(false)} auth={auth}/>) : ''}
       <News firestore={firestore}/>
       <div className="text-white fixed bottom-2 left-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
       <div className="fixed top-0 left-0 h-12 bg-tertiary w-screen flex justify-center items-center shadow-md">
         <img src={limoverseLogo} alt="" className="h-24 mr-auto ml-6" />
         {user ?
         <button onClick={onSignOut} className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiStatusOffline className="mr-2"/>Kijelentkezés</button> : 
-        <button className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiFingerPrint className="mr-2"/>Bejelentkezés</button>
+        <button onClick={() => setLogin(true)} className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiFingerPrint className="mr-2"/>Bejelentkezés</button>
         } 
         </div>
     </div>

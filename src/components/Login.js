@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HiFingerPrint, HiKey } from 'react-icons/hi';
+import { HiFingerPrint, HiKey, HiArrowNarrowLeft } from 'react-icons/hi';
 import { IoLogoFirebase } from 'react-icons/io5'; 
 import { useState, useEffect } from 'react';
 import {signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
@@ -22,9 +22,12 @@ const Login = (props) => {
           });
     }
 
+    const handleChildClick = (e) => {
+        e.stopPropagation();
+    }
         return (
-            <div className="h-screen w-screen top-0 left-0 fixed bg-black bg-opacity-90 z-20 flex items-center justify-center flex-col">
-                <div className="bg-secondary py-7 px-8 rounded-md w-1/4 flex flex-col justify-center">
+            <div onClick={props.onClick} className="h-screen w-screen top-0 left-0 fixed bg-black bg-opacity-90 z-20 flex items-center justify-center flex-col">
+                <div onClick={handleChildClick} className="relative bg-secondary py-7 px-8 rounded-md w-1/4 flex flex-col justify-center">
                     <p className="text-3xl text-white mb-8 font-semibold flex items-center mx-auto"><HiKey className="mr-2"/>Bejelentkezés</p>
                     <form action="" className="w-full" onSubmit={onSingIn}>
                     <div className="flex flex-col mb-3">
