@@ -6,15 +6,14 @@ import Login from './components/Login';
 
 //Resources
 import limoverseLogo from './resources/limoverse_white.svg';
-import { HiFingerPrint, HiLogout } from 'react-icons/hi';
+import { HiFingerPrint, HiLogout, HiStatusOffline } from 'react-icons/hi';
 import { FaSignOutAlt } from 'react-icons/fa'
 
 //Hooks & Others
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/firestore'
+import 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
-import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
 
@@ -50,7 +49,7 @@ function App() {
       <div className="fixed top-0 left-0 h-12 bg-tertiary w-screen flex justify-center items-center shadow-md">
         <img src={limoverseLogo} alt="" className="h-24 mr-auto ml-6" />
         {user ?
-        <button onClick={onSignOut} className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiLogout className="mr-2"/>Kijelentkezés</button> : 
+        <button onClick={onSignOut} className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiStatusOffline className="mr-2"/>Kijelentkezés</button> : 
         <button className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiFingerPrint className="mr-2"/>Bejelentkezés</button>
         } 
         </div>
