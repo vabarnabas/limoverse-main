@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/limoverse-main/static/css/main.31e288f0.chunk.css",
-    "main.js": "/limoverse-main/static/js/main.4a1d89ef.chunk.js",
-    "main.js.map": "/limoverse-main/static/js/main.4a1d89ef.chunk.js.map",
+    "main.css": "/limoverse-main/static/css/main.3d3d3063.chunk.css",
+    "main.js": "/limoverse-main/static/js/main.bdba0c07.chunk.js",
+    "main.js.map": "/limoverse-main/static/js/main.bdba0c07.chunk.js.map",
     "runtime-main.js": "/limoverse-main/static/js/runtime-main.98022de7.js",
     "runtime-main.js.map": "/limoverse-main/static/js/runtime-main.98022de7.js.map",
-    "static/js/2.9da56a94.chunk.js": "/limoverse-main/static/js/2.9da56a94.chunk.js",
-    "static/js/2.9da56a94.chunk.js.map": "/limoverse-main/static/js/2.9da56a94.chunk.js.map",
+    "static/js/2.e7d8a615.chunk.js": "/limoverse-main/static/js/2.e7d8a615.chunk.js",
+    "static/js/2.e7d8a615.chunk.js.map": "/limoverse-main/static/js/2.e7d8a615.chunk.js.map",
     "index.html": "/limoverse-main/index.html",
-    "static/css/main.31e288f0.chunk.css.map": "/limoverse-main/static/css/main.31e288f0.chunk.css.map",
-    "static/js/2.9da56a94.chunk.js.LICENSE.txt": "/limoverse-main/static/js/2.9da56a94.chunk.js.LICENSE.txt",
+    "static/css/main.3d3d3063.chunk.css.map": "/limoverse-main/static/css/main.3d3d3063.chunk.css.map",
+    "static/js/2.e7d8a615.chunk.js.LICENSE.txt": "/limoverse-main/static/js/2.e7d8a615.chunk.js.LICENSE.txt",
     "static/media/limoverse_white.b7bfdd7f.svg": "/limoverse-main/static/media/limoverse_white.b7bfdd7f.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.98022de7.js",
-    "static/js/2.9da56a94.chunk.js",
-    "static/css/main.31e288f0.chunk.css",
-    "static/js/main.4a1d89ef.chunk.js"
+    "static/js/2.e7d8a615.chunk.js",
+    "static/css/main.3d3d3063.chunk.css",
+    "static/js/main.bdba0c07.chunk.js"
   ]
 }
