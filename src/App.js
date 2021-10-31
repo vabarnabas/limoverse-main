@@ -3,17 +3,17 @@ import './App.css';
 //Components
 import News from './components/News';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 
 //Resources
 import limoverseLogo from './resources/limoverse_white.svg';
-import { HiFingerPrint, HiLogout, HiStatusOffline } from 'react-icons/hi';
-import { FaSignOutAlt } from 'react-icons/fa'
+import { HiFingerPrint, HiStatusOffline, HiIdentification } from 'react-icons/hi';
 
 //Hooks & Others
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'
 import { useState, useEffect } from 'react';
-import { getAuth, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
@@ -42,22 +42,13 @@ function App() {
 
   const [isLogin, setLogin] = useState(false);
 
-  const onSignOut = () => {
-      signOut(auth);
-  }
-
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
+      <Navbar user={user} setLogin={setLogin} auth={auth}/>
       {isLogin ? (user ? '' : <Login onClick={() => setLogin(false)} auth={auth}/>) : ''}
-      <News firestore={firestore}/>
+      <News firestore={firestore} auth={auth}/>
       <div className="text-white fixed bottom-2 left-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
-      <div className="fixed top-0 left-0 h-12 bg-tertiary w-screen flex justify-center items-center shadow-md">
-        <img src={limoverseLogo} alt="" className="h-24 mr-auto ml-6" />
-        {user ?
-        <button onClick={onSignOut} className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiStatusOffline className="mr-2"/>Kijelentkezés</button> : 
-        <button onClick={() => setLogin(true)} className="bg-white py-1 px-4 ml-auto mr-6 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiFingerPrint className="mr-2"/>Bejelentkezés</button>
-        } 
-        </div>
+
     </div>
   );
 }

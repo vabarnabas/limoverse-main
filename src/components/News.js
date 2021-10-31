@@ -19,7 +19,7 @@ const News = (props) => {
 
     return (
         <div className="bg-primary h-screen overflow-y-auto flex flex-col items-center text-white pt-16 pb-2">
-                {announcements.map((ann)=>
+                {announcements.map((ann) =>
                 (
                 <div key={ann.id} className="bg-secondary py-4 px-6 rounded my-4 w-2/5">
                     <p className="font-semibold text-2xl flex items-center mb-0">
