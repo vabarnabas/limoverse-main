@@ -3,6 +3,8 @@ import { HiFingerPrint, HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import { signOut } from "firebase/auth";
 import { useState } from 'react';
 
+import limoverseLogo from '../resources/limoverse_logo.svg'
+
 const Navbar = (props) => {
     const [dropdown,setDropdown] = useState(false);
 
@@ -18,6 +20,7 @@ const Navbar = (props) => {
 
     return (
         <div className="fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md ">
+            <img src={limoverseLogo} alt="" className="fixed h-32 pl-4" />
             {dropdown ?
             <div onClick={() => setDropdown(false)}className="h-screen w-screen top-0 left-0 fixed flex z-40">
                 <div onClick={handleChildClick} className="fixed top-14 right-0 mr-4 w-40 bg-tertiary flex flex-col rounded-md items-center text-white">
@@ -36,8 +39,8 @@ const Navbar = (props) => {
                 : ''}
                 {props.user ?
                     ( dropdown ?
-                    <HiChevronDown onClick={() => setDropdown(!dropdown)} className="text-white text-4xl py-1 px-2 bg-quaternary rounded-md"/> :
-                    <HiChevronUp onClick={() => setDropdown(!dropdown)} className="text-white text-4xl py-1 px-2 bg-quaternary rounded-md"/>
+                    <HiChevronDown onClick={() => setDropdown(!dropdown)} className="text-primary text-3xl py-1 px-2 bg-white hover:bg-gray-200 rounded-md"/> :
+                    <HiChevronUp onClick={() => setDropdown(!dropdown)} className="text-primary text-3xl py-1 px-2 bg-white hover:bg-gray-200 rounded-md"/>
                     ) : 
                     <button onClick={() => props.setLogin(true)} className="bg-white py-1 px-4 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiFingerPrint className="mr-2"/>Bejelentkezés</button>
                 }
