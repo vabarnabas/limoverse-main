@@ -31,7 +31,7 @@ const HashGenerator = () => {
     return (
         <div className="flex items-center justify-center h-screen">
             <div className="bg-secondary py-7 px-8 rounded-md w-4/5 flex items center justify-center flex-col sm:w-2/5">
-                <p className="text-3xl text-white mb-8 font-semibold flex items-center mx-auto">SHA256 Generátor</p>
+                <p className="text-center text-3xl text-white mb-8 font-semibold flex items-center mx-auto">SHA256 Generátor</p>
                 <form action="" className="flex flex-wrap items-center justify-center" onSubmit={generateHash}>
                     <div className="flex flex-col mb-3 mx-5">
                         <p className="text-white text-sm mb-1 font-semibold">E-mail cím<span className="text-red-500 font-semibold">*</span></p>

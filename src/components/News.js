@@ -11,10 +11,9 @@ const News = (props) => {
         const getData = async () => {
             onSnapshot(collection(props.firestore, 'announcements'), (snapshot) => {
                 setAnnouncements(snapshot.docs.map((doc) => doc.data()))
-            })
-        }
+            })}
         getData();
-    }, [])
+    }, []);
 
     return (
         <div className="bg-primary h-screen overflow-y-auto flex flex-col items-center text-white pt-16 pb-2">

@@ -16,6 +16,7 @@ const Navbar = (props) => {
 
     const handleChildClick = (e) => {
         e.stopPropagation();
+        setDropdown(false);
     }
 
     return (
