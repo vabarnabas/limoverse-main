@@ -22,12 +22,12 @@ import HashGenerator from './components/HashGenerator';
 
 //Firebase Config
 const firebaseConfig = {
-  apiKey: "AIzaSyABvq9i9E4DngeMWTIoPlsnoBz3cjtv82s",
-  authDomain: "limoverse-3085c.firebaseapp.com",
-  projectId: "limoverse-3085c",
-  storageBucket: "limoverse-3085c.appspot.com",
-  messagingSenderId: "751192749715",
-  appId: "1:751192749715:web:5815d4e7219ff068a57f66"
+  apiKey: "AIzaSyCBzNwEVcGmlxKbkwEQghiLfP1Jp_qo6No",
+  authDomain: "limoverse-main.firebaseapp.com",
+  projectId: "limoverse-main",
+  storageBucket: "limoverse-main.appspot.com",
+  messagingSenderId: "567564750931",
+  appId: "1:567564750931:web:ad97934e0cd98a70bd76a6"
 };
 
 // Initialize Firebase
