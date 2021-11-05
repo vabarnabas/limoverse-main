@@ -27,7 +27,7 @@ const Login = (props) => {
     }
         return (
             <div onClick={props.onClick} className="h-screen w-screen top-0 left-0 fixed bg-black bg-opacity-90 z-20 flex items-center justify-center flex-col">
-                <div onClick={handleChildClick} className="relative bg-secondary py-7 px-8 rounded-md w-1/4 flex flex-col justify-center">
+                <div onClick={handleChildClick} className="relative bg-secondary py-7 px-8 rounded-md w-4/5 flex flex-col justify-center sm:w-1/4">
                     <p className="text-3xl text-white mb-8 font-semibold flex items-center mx-auto">Bejelentkezés</p>
                     <form action="" className="w-full" onSubmit={onSingIn}>
                     <div className="flex flex-col mb-3">
