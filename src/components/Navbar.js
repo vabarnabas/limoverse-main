@@ -10,6 +10,7 @@ const Navbar = (props) => {
 
     const onSignOut = () => {
         signOut(props.auth);
+        props.setPageState('News');
         props.setLogin(false);
         setDropdown(false);
     }

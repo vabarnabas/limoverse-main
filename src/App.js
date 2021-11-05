@@ -53,7 +53,7 @@ function App() {
                             case 'News':
                                 return <News firestore={firestore} auth={auth}/>;
                             case 'Hash':
-                                return <HashGenerator />;
+                                return <HashGenerator firestore={firestore} auth={auth}/>;
                             default:
                                 return null
                         }})()  

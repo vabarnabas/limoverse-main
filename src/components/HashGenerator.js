@@ -2,9 +2,10 @@ import React from 'react'
 import { sha256 } from 'js-sha256';
 import { useState } from 'react';
 import { HiServer } from 'react-icons/hi';
-import { CSVLink, CSVDownload } from "react-csv";
+import { doc, setDoc } from "firebase/firestore"; 
+import { v4 as uuidv4 } from 'uuid';
 
-const HashGenerator = () => {
+const HashGenerator = (props) => {
 
     const[email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -13,15 +14,12 @@ const HashGenerator = () => {
 
     const generateHash = (e) => {
         e.preventDefault();
-        let data = [
-            {
+        setDoc(doc(props.firestore, 'blacklist', uuidv4()),{
             email: sha256(email),
-            phone: sha256(phone), 
+            phone: sha256(phone),
             license: sha256(license),
             birthday: sha256(birthday)
-            }
-        ];
-        console.log(data);
+        })
         setEmail('');
         setPhone('');
         setLicense('');
