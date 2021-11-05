@@ -31,19 +31,19 @@ const HashGenerator = (props) => {
             <div className="bg-secondary py-7 px-8 rounded-md w-4/5 flex items center justify-center flex-col sm:w-2/5">
                 <p className="text-center text-3xl text-white mb-8 font-semibold flex items-center mx-auto">SHA256 Generátor</p>
                 <form action="" className="flex flex-wrap items-center justify-center w-full" onSubmit={generateHash}>
-                    <div className="flex flex-col mb-3 mx-5">
+                    <div className="w-2/5 flex flex-col mb-3 mx-3">
                         <p className="text-white text-sm mb-1 font-semibold">E-mail cím<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
-                    <div className="flex flex-col mb-3 mx-5">
+                    <div className="w-2/5 flex flex-col mb-3 mx-3">
                         <p className="text-white text-sm mb-1 font-semibold">Telefonszám<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
-                    <div className="flex flex-col mb-3 mx-5">
+                    <div className="w-2/5 flex flex-col mb-3 mx-3">
                         <p className="text-white text-sm mb-1 font-semibold">Jogosítvány szám<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={license} onChange={(e) => setLicense(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
-                    <div className="flex flex-col mb-3 mx-5">
+                    <div className="w-2/5 flex flex-col mb-3 mx-3">
                         <p className="text-white text-sm mb-1 font-semibold">Születési Dátum<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={birthday} onChange={(e) => setBirthday(e.target.value)} type="date" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
