@@ -12,12 +12,13 @@ import { HiFingerPrint, HiStatusOffline, HiIdentification } from 'react-icons/hi
 //Hooks & Others
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getAuth, signOut } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
 import {initializeFirestore} from 'firebase/firestore'; 
+import HashGenerator from './components/HashGenerator';
 
 //Firebase Config
 const firebaseConfig = {
@@ -41,12 +42,22 @@ function App() {
   const firestore = getFirestore(app);
 
   const [isLogin, setLogin] = useState(false);
+  const [pageState, setPageState] = useState('News');
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
-      <Navbar user={user} setLogin={setLogin} auth={auth}/>
+      <Navbar user={user} setLogin={(login) => setLogin(login)} setPageState={(state) => setPageState(state)} auth={auth} />
       {isLogin ? (user ? '' : <Login onClick={() => setLogin(false)} auth={auth}/>) : ''}
-      <News firestore={firestore} auth={auth}/>
+      {(() =>
+                        {switch(pageState) {
+                            case 'News':
+                                return <News firestore={firestore} auth={auth}/>;
+                            case 'Hash':
+                                return <HashGenerator />;
+                            default:
+                                return null
+                        }})()  
+                    }
       <div className="text-white fixed bottom-2 left-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
 
     </div>

@@ -19,12 +19,13 @@ const Navbar = (props) => {
     }
 
     return (
-        <div className="fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md ">
+        <div className="fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md z-20">
             <img src={limoverseLogo} alt="" className="fixed h-32 pl-4" />
             {dropdown ?
             <div onClick={() => setDropdown(false)}className="h-screen w-screen top-0 left-0 fixed flex z-40">
                 <div onClick={handleChildClick} className="fixed top-14 right-0 mr-4 w-40 bg-tertiary flex flex-col rounded-md items-center text-white">
-                    <p className="mt-2 py-1 hover:bg-quaternary w-full text-center">Profilom</p>
+                    <p onClick={() => props.setPageState('News')} className="mt-2 py-1 hover:bg-quaternary w-full text-center">Hírek</p>
+                    <p onClick={() => props.setPageState('Hash')} className="py-1 hover:bg-quaternary w-full text-center">SHA Generátor</p>
                     <p className="py-1 hover:bg-quaternary w-full text-center">Beállítások</p>
                     <p onClick={onSignOut} className="mb-2 py-1 hover:bg-quaternary w-full text-center cursor-pointer">Kijelentkezés</p>
                 </div>

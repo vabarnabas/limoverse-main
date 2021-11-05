@@ -28,7 +28,7 @@ const Login = (props) => {
         return (
             <div onClick={props.onClick} className="h-screen w-screen top-0 left-0 fixed bg-black bg-opacity-90 z-20 flex items-center justify-center flex-col">
                 <div onClick={handleChildClick} className="relative bg-secondary py-7 px-8 rounded-md w-1/4 flex flex-col justify-center">
-                    <p className="text-3xl text-white mb-8 font-semibold flex items-center mx-auto"><HiKey className="mr-2"/>Bejelentkezés</p>
+                    <p className="text-3xl text-white mb-8 font-semibold flex items-center mx-auto">Bejelentkezés</p>
                     <form action="" className="w-full" onSubmit={onSingIn}>
                     <div className="flex flex-col mb-3">
                         <p className="text-white text-sm mb-1 font-semibold">E-mail<span className="text-red-500 font-semibold">*</span></p>
