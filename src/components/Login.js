@@ -7,6 +7,7 @@ import {signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const onSingIn = (e) => {
         e.preventDefault();
@@ -17,8 +18,21 @@ const Login = (props) => {
             // ...
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error.code);
+            (() =>
+                        {switch(error.code) {
+                            case 'auth/invalid-email':
+                                return setError('Hibás vagy ismeretlen e-mail cím!');
+                            case 'auth/internal-error':
+                                return setError('Hibás vagy ismeretlen adatok!');
+                            case 'auth/wrong-password':
+                                return setError('Hibás jelszó!');
+                            case 'auth/too-many-requests':
+                                return setError('Túl sok próbálkozás');
+                            default:
+                                setError('');
+                        }})() 
+
           });
     }
 
@@ -33,6 +47,7 @@ const Login = (props) => {
                     <div className="flex flex-col mb-3">
                         <p className="text-white text-sm mb-1 font-semibold">E-mail<span className="text-red-500 font-semibold">*</span></p>
                         <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                        <p className="text-xs mt-1 text-red-500">{error}</p>
                     </div>
                     <div className="flex flex-col mb-5">
                         <p className="text-white text-sm mb-1 font-semibold">Jelszó<span className="text-red-500 font-semibold">*</span></p>
