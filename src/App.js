@@ -5,10 +5,6 @@ import News from './components/News';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 
-//Resources
-import limoverseLogo from './resources/limoverse_white.svg';
-import { HiFingerPrint, HiStatusOffline, HiIdentification } from 'react-icons/hi';
-
 //Hooks & Others
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'
@@ -53,7 +49,7 @@ function App() {
                             case 'News':
                                 return <News firestore={firestore} auth={auth}/>;
                             case 'Hash':
-                                return <HashGenerator firestore={firestore} auth={auth}/>;
+                                return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
                             default:
                                 return null
                         }})()  
