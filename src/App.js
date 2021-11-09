@@ -4,6 +4,7 @@ import './App.css';
 import News from './components/News';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import Menu from './components/Menu';
 
 //Hooks & Others
 import firebase from 'firebase/compat/app';
@@ -38,7 +39,7 @@ function App() {
   const firestore = getFirestore(app);
 
   const [isLogin, setLogin] = useState(false);
-  const [pageState, setPageState] = useState('News');
+  const [pageState, setPageState] = useState('Menu');
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
@@ -50,8 +51,10 @@ function App() {
                                 return <News firestore={firestore} auth={auth}/>;
                             case 'Hash':
                                 return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
+                            case 'Menu':
+                                return <Menu />;
                             default:
-                                return null
+                                return null;
                         }})()  
                     }
       <div className="text-white fixed bottom-2 left-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>

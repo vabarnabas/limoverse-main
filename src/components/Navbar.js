@@ -22,12 +22,12 @@ const Navbar = (props) => {
 
     return (
         <div className="fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md z-20">
-            <img src={limoverseLogo} alt="" className="fixed h-32 pl-4" />
+            <img onClick={() => props.setPageState('Menu')} src={limoverseLogo} alt="" className="fixed h-32 pl-4" />
             {dropdown ?
             <div onClick={() => setDropdown(false)}className="h-screen w-screen top-0 left-0 fixed flex z-40">
-                <div onClick={handleChildClick} className="fixed top-14 right-0 mr-4 w-40 bg-tertiary flex flex-col rounded-md items-center text-white">
+                <div onClick={handleChildClick} className="fixed top-14 right-0 mr-4 w-40 bg-tertiary flex flex-col rounded-md items-center text-white shadow-md">
                     <p onClick={() => props.setPageState('News')} className="mt-2 py-1 hover:bg-quaternary w-full text-center">Hírek</p>
-                    <p onClick={() => props.setPageState('Hash')} className="py-1 hover:bg-quaternary w-full text-center">SHA Generátor</p>
+                    <p onClick={() => props.setPageState('Hash')} className="py-1 hover:bg-quaternary w-full text-center">SHA256 Tiltólista</p>
                     <p className="py-1 hover:bg-quaternary w-full text-center">Beállítások</p>
                     <p onClick={onSignOut} className="mb-2 py-1 hover:bg-quaternary w-full text-center cursor-pointer">Kijelentkezés</p>
                 </div>
@@ -37,7 +37,7 @@ const Navbar = (props) => {
                 <div className="flex items-center h-12">
                 {props.user ?
                     <div className="flex items-center mr-3">
-                        <p className="text-xs text-white mr-2">{props.user.email}</p>
+                        <p className="text-xs text-white mr-2 sm:visible invisible">{props.user.email}</p>
                     </div>
                 : ''}
                 {props.user ?
