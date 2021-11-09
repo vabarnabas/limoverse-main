@@ -52,7 +52,7 @@ function App() {
                             case 'Hash':
                                 return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
                             case 'Menu':
-                                return <Menu />;
+                                return <Menu setPageState={(state) => setPageState(state)}/>;
                             default:
                                 return null;
                         }})()  

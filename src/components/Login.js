@@ -29,6 +29,8 @@ const Login = (props) => {
                                 return setError('Hibás jelszó!');
                             case 'auth/too-many-requests':
                                 return setError('Túl sok próbálkozás');
+                            case 'auth/user-not-found':
+                                return setError('Ismeretlen felhasználó!')
                             default:
                                 setError('');
                         }})() 
