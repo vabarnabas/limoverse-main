@@ -15,6 +15,7 @@ const Login = (props) => {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            props.setPageState('Menu');
             // ...
           })
           .catch((error) => {

@@ -19,7 +19,6 @@ const Navbar = (props) => {
         e.stopPropagation();
         setDropdown(false);
     }
-
     return (
         <div className="fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md z-20">
             <img onClick={() => props.setPageState('Menu')} src={limoverseLogo} alt="" className="fixed h-32 pl-4" />
