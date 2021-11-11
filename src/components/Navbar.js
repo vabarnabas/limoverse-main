@@ -2,6 +2,7 @@ import React from "react";
 import { HiFingerPrint, HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import { signOut } from "firebase/auth";
 import { useState } from 'react';
+import { toast } from 'react-hot-toast'
 
 import limoverseLogo from '../resources/limoverse_logo.svg'
 

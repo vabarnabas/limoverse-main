@@ -16,6 +16,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
 import {initializeFirestore} from 'firebase/firestore'; 
 import HashGenerator from './components/HashGenerator';
+import { Toaster } from 'react-hot-toast'
 
 //Firebase Config
 const firebaseConfig = {
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
+      <Toaster position="top-left"/>
       <Navbar user={user} setLogin={(login) => setLogin(login)} setPageState={(state) => setPageState(state)} auth={auth} />
       {isLogin ? (user ? '' : <Login onClick={() => setLogin(false)} auth={auth}/>) : ''}
       {user ? (() =>

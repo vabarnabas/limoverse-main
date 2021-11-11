@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { HiServer, HiSearch, HiQuestionMarkCircle, HiCheckCircle, HiXCircle } from 'react-icons/hi';
 import { doc, setDoc, collection, query, where, getDocs, limit } from "firebase/firestore"; 
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-hot-toast'
+import Toast from './Toast';
 
 const HashGenerator = (props) => {
 
@@ -33,13 +35,21 @@ const HashGenerator = (props) => {
             phone: sha256(phone.slice(-9)),
             license: sha256(license.toLocaleLowerCase().replace(' ', '')),
             birthday: sha256(birthday),
-            uID: props.user.uid
+            uID: props.user.email
         })
         setEmail('');
         setPhone('');
         setLicense('');
         setBirthday('');
         setApproveModal(false);
+        toast.success('Sikeres feltöltés!',{
+                style: {
+                    borderRadius: '10px',
+                    background: '#282828',
+                    color: '#fff',
+                    padding: '0.5rem 1.25rem'
+            },
+        })
     }
 
     const showSearchModal = async (e) => {
