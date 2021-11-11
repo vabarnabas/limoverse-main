@@ -29,9 +29,9 @@ const HashGenerator = (props) => {
     const generateHash = (e) => {
         e.preventDefault();
         setDoc(doc(props.firestore, 'blacklist', uuidv4()),{
-            email: sha256(email),
-            phone: sha256(phone),
-            license: sha256(license),
+            email: sha256(email.toLocaleLowerCase().replace(' ', '')),
+            phone: sha256(phone.slice(-9)),
+            license: sha256(license.toLocaleLowerCase().replace(' ', '')),
             birthday: sha256(birthday),
             uID: props.user.uid
         })
@@ -78,6 +78,7 @@ const HashGenerator = (props) => {
     const showApproveModal = (e) => {
         e.preventDefault();
         setApproveModal(true);
+        alert(email.toLocaleLowerCase().replace(' ', ''))
     }
 
     const handleChildClick = (e) => {
