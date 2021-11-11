@@ -78,7 +78,6 @@ const HashGenerator = (props) => {
     const showApproveModal = (e) => {
         e.preventDefault();
         setApproveModal(true);
-        alert(email.toLocaleLowerCase().replace(' ', ''))
     }
 
     const handleChildClick = (e) => {
@@ -117,8 +116,8 @@ const HashGenerator = (props) => {
             {approveModal ?
             <div onClick={() => setApproveModal(false)} className="fixed flex items-center justify-center h-screen w-screen top-0 right-0 bg-primary z-50 bg-opacity-90">
                 <div onClick={handleChildClick} className="text-white bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-1/4">
-                    <p className="text-center text-3xl mb-6 font-semibold flex items-center">Tiltólista Hozzáadás</p>
-                    <p className="text-center text-xs flex flex-col items-center justify-center"><HiQuestionMarkCircle className="text-5xl mb-2"/>Biztosan jó formátumú adatokat adtál meg és azzal a céllal, hogy ezeket a tiltólistához add?</p>
+                    <p className="text-center text-3xl mb-3 font-semibold flex items-center">Tiltólista Hozzáadás</p>
+                    <p className="text-center text-xs flex items-center justify-center flex-col"><HiQuestionMarkCircle className="text-5xl mb-3"/>Biztosan jó formátumú adatokat adtál meg és azzal a céllal, hogy ezeket a tiltólistához add?</p>
                     <div className="mt-6 flex justify-center">
                         <button onClick={generateHash} className="mx-4 py-1 bg-white px-5 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary "><HiCheckCircle className="mr-2"/>Igen</button>
                         <button onClick={() => setApproveModal(false)} className="mx-4 py-1 bg-white px-5 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary "><HiXCircle className="mr-2"/>Nem</button>
