@@ -32,7 +32,7 @@ const HashGenerator = (props) => {
         e.preventDefault();
         setDoc(doc(props.firestore, 'blacklist', uuidv4()),{
             email: sha256(email.toLocaleLowerCase().replace(' ', '')),
-            phone: sha256(phone.slice(-9)),
+            phone: sha256(phone.replace(' ', '').slice(-9)),
             license: sha256(license.toLocaleLowerCase().replace(' ', '')),
             birthday: sha256(birthday),
             uID: props.user.email
