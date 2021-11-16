@@ -21,10 +21,14 @@ const HashGenerator = (props) => {
     const [searchModal, setSearchModal] = useState(false);
     const [approveModal, setApproveModal] = useState(false);
 
+    const q1 = query(collection(props.firestore, 'blacklist'), where('email', '==', sha256(email.toLocaleLowerCase().replace(' ', ''))), limit(5));
+    const q2 = query(collection(props.firestore, 'blacklist'), where('phone', '==', sha256(phone.replace(' ', '').slice(-9))), limit(5));
+    const q3 = query(collection(props.firestore, 'blacklist'), where('license', '==', sha256(license.toLocaleLowerCase().replace(' ', ''))), limit(5));
+
     const [lastQuery, setLastQuery] = useState({
-        email: '',
-        phone: '',
-        license: '',
+        email: 'test',
+        phone: 'test',
+        license: 'test',
     })
 
 
@@ -52,37 +56,36 @@ const HashGenerator = (props) => {
         })
     }
 
-    const showSearchModal = async (e) => {
+    const querySearchModal = async (e) => {
         if (email !== '' && phone !== '' && license !== '') {
             e.preventDefault()
             if (email !== lastQuery.email) {
-            const q1 = query(collection(props.firestore, 'blacklist'), where('email', '==', sha256(email)), limit(5));
             const querySnapshot1 = await getDocs(q1);
             setEmailBlackList(querySnapshot1.docs.map((doc) => doc.data()))
             }
             if (phone !== lastQuery.phone) {
-            const q2 = query(collection(props.firestore, 'blacklist'), where('phone', '==', sha256(phone)), limit(5));
             const querySnapshot2 = await getDocs(q2);
             setPhoneBlackList(querySnapshot2.docs.map((doc) => doc.data()))
             }
             if (license !== lastQuery.license) {
-            const q3 = query(collection(props.firestore, 'blacklist'), where('license', '==', sha256(license)), limit(5));
             const querySnapshot3 = await getDocs(q3);
             setLicenseBlackList(querySnapshot3.docs.map((doc) => doc.data()))
             }
-            if (emailBlackList.length > 0 || phoneBlackList.length > 0 || licenseBlackList.length > 0) {
-            setSearchModal(true)
-            }
-            setLastQuery({
-                email: email,
-                phone: phone,
-                license: license,
-            })
-            setEmail('');
-            setPhone('');
-            setLicense('');
-            setBirthday('');
+            await showSearchModal()
         }
+    }
+
+    const showSearchModal = async () => {
+        setLastQuery({
+            email: email,
+            phone: phone,
+            license: license,
+        })
+        setSearchModal(true)
+        setEmail('');
+        setPhone('');
+        setLicense('');
+        setBirthday('');
     }
 
     const showApproveModal = (e) => {
@@ -157,7 +160,7 @@ const HashGenerator = (props) => {
                     </div>
                     <div className="flex items-center justify-center mt-2 sm:w-5/6 w-4/6">
                     <button className="w-11/12 py-1 bg-white px-4 rounded-md  flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary "><HiServer className="mr-2"/>Generálás</button>
-                    <button onClick={showSearchModal} className="ml-2 bg-white hover:bg-gray-200 rounded-md py-2 px-2 flex items-center justify-center"><HiSearch className="text-black"/></button>
+                    <button onClick={querySearchModal} className="ml-2 bg-white hover:bg-gray-200 rounded-md py-2 px-2 flex items-center justify-center"><HiSearch className="text-black"/></button>
                     </div>
                     <p className="text-white w-5/6 text-center text-xs mt-2">A generálás gombra kattintva, tiltólistára kerülnek az általad beírt adatok, így kérlek figyelmesen nézd át a formátumokat !</p>
                 </form>
