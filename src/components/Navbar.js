@@ -25,8 +25,8 @@ const Navbar = (props) => {
             {dropdown ?
             <div onClick={() => setDropdown(false)}className="h-screen w-screen top-0 left-0 fixed flex z-40">
                 <div onClick={handleChildClick} className="fixed top-14 right-0 mr-4 bg-tertiary flex flex-col rounded-md items-center text-white shadow-md">
-                    <p onClick={() => props.setPageState('News')} className="mt-2 px-16 py-1 hover:bg-quaternary w-full text-center">Hírek</p>
-                    <p onClick={() => props.setPageState('Hash')} className="py-1 hover:bg-quaternary w-full text-center">SHA256 Tiltólista</p>
+                    <p onClick={() => props.setPageState('Profile')} className="mt-2 px-16 py-1 hover:bg-quaternary w-full text-center">Profilom</p>
+                    <p onClick={() => props.setPageState('News')} className=" px-16 py-1 hover:bg-quaternary w-full text-center">Hírek</p>
                     <p className="py-1 hover:bg-quaternary w-full text-center">Beállítások</p>
                     <p onClick={onSignOut} className="mb-2 py-1 hover:bg-quaternary w-full text-center cursor-pointer">Kijelentkezés</p>
                 </div>

@@ -138,7 +138,7 @@ const HashGenerator = (props) => {
             </div>:''
             }
             {/* Main Form */}
-            <div className="mt-12 bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-2/5">
+            <div className="mt-12 bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-2/5 text-center">
                 <p className="text-center text-3xl text-white mb-6 font-semibold flex items-center mx-auto">SHA256 Tiltólista</p>
                 <form action="" className="flex flex-wrap items-center justify-center w-full" onSubmit={showApproveModal}>
                     <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">

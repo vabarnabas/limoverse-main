@@ -5,6 +5,7 @@ import News from './components/News';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Menu from './components/Menu';
+import Profile from './components/Profile';
 
 //Hooks & Others
 import firebase from 'firebase/compat/app';
@@ -55,12 +56,13 @@ function App() {
                                 return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
                             case 'Menu':
                                 return <Menu setPageState={(state) => setPageState(state)}/>;
+                            case 'Profile':
+                                return <Profile setPageState={(state) => setPageState(state)}/>;
                             default:
                                 return null;
                         }})()  : ''
                     }
       <div className="text-white fixed bottom-2 left-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
-
     </div>
   );
 }
