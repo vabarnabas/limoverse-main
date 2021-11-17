@@ -5,7 +5,7 @@ import { MdSave } from 'react-icons/md'
 
 const Profile = (props) => {
     const [password, setPassword] = useState('');
-    const [vulogPassword, setVulogPassword] = useState('');
+    const [vulogPassword, setVulogPassword] = useState(localStorage.getItem('vulogPassword'));
 
     const savePassword = (e) => {
         e.preventDefault();
