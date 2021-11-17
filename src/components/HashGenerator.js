@@ -5,7 +5,6 @@ import { HiServer, HiSearch, HiQuestionMarkCircle, HiCheckCircle, HiXCircle } fr
 import { doc, setDoc, collection, query, where, getDocs, limit } from "firebase/firestore"; 
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-hot-toast'
-import Toast from './Toast';
 
 const HashGenerator = (props) => {
 
@@ -26,9 +25,9 @@ const HashGenerator = (props) => {
     const q3 = query(collection(props.firestore, 'blacklist'), where('license', '==', sha256(license.toLocaleLowerCase().replace(' ', ''))), limit(5));
 
     const [lastQuery, setLastQuery] = useState({
-        email: 'test',
-        phone: 'test',
-        license: 'test',
+        email: '',
+        phone: '',
+        license: '',
     })
 
 
