@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react/cjs/react.development'
+import { useState } from 'react'
 import { HiPencil, HiX } from 'react-icons/hi'
 import { MdSave } from 'react-icons/md'
 
