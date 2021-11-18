@@ -6,23 +6,19 @@ import { toast } from 'react-hot-toast'
 
 const Profile = (props) => {
     const [password, setPassword] = useState('');
-    const [vulogPassword, setVulogPassword] = useState(localStorage.getItem('vulogPassword'));
 
     const savePassword = (e) => {
         e.preventDefault();
-        setVulogPassword(password);
         localStorage.setItem('vulogPassword', password);
     }
 
     const resetPassword = (e) => {
         e.preventDefault();
-        setVulogPassword(null);
     }
 
     const removePassword = (e) => {
         e.preventDefault();
         localStorage.removeItem('vulogPassword');
-        setVulogPassword(null)
     }
 
     const getToken = () => {
@@ -35,7 +31,7 @@ const Profile = (props) => {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Cache-Control': 'no-cache',    
             },
-            body: 'username=' + props.user.email + '&client_secret=69f1286c-6466-4d92-bc2b-1d67c1bda9c5&grant_type=password&client_id=MOL-HUBUD_secure&password=' + vulogPassword
+            body: 'username=' + props.user.email + '&client_secret=69f1286c-6466-4d92-bc2b-1d67c1bda9c5&grant_type=password&client_id=MOL-HUBUD_secure&password=' + localStorage.getItem('vulogPassword')
         }).then(res => {
             if (res.ok) {
                 toast.success('Token sikeresen generálva!',{
@@ -85,7 +81,7 @@ const Profile = (props) => {
             <div className="mt-12 bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-2/5">
                 <p className="text-center text-3xl text-white mb-6 font-semibold flex items-center mx-auto">Profilom</p>
                 <form onSubmit={savePassword} className="flex flex-wrap items-center justify-center w-full">
-                    {(vulogPassword === null) ? 
+                    {(localStorage.getItem('vulogPassword') === null) ? 
                     <div className="w-full flex items-center flex-col mb-3 mx-3 sm:w-1/2">
                         <p className="text-white text-sm mb-1 font-semibold">Vulog jelszavam<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
@@ -94,7 +90,7 @@ const Profile = (props) => {
                     </div>:''
                     }
                 </form>
-                {(vulogPassword !== null) ?
+                {(localStorage.getItem('vulogPassword') !== null) ?
                 <div className="flex flex-col items-center justify-center mt1-">
                     <div className="w-full flex items-center justify-center text-white">
                         <p className="">Vulog jelszavam: <span className="font-semibold">Mentve</span></p>
