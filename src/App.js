@@ -42,6 +42,8 @@ function App() {
 
   const [isLogin, setLogin] = useState(false);
   const [pageState, setPageState] = useState('Menu');
+  const [token, setToken] = useState('');
+  const [tokenState, setTokenState] = useState(false);
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
@@ -57,7 +59,7 @@ function App() {
                             case 'Menu':
                                 return <Menu setPageState={(state) => setPageState(state)}/>;
                             case 'Profile':
-                                return <Profile setPageState={(state) => setPageState(state)} user={user}/>;
+                                return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user}/>;
                             default:
                                 return null;
                         }})()  : ''
