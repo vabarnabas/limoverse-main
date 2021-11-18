@@ -57,7 +57,7 @@ function App() {
                             case 'Menu':
                                 return <Menu setPageState={(state) => setPageState(state)}/>;
                             case 'Profile':
-                                return <Profile setPageState={(state) => setPageState(state)}/>;
+                                return <Profile setPageState={(state) => setPageState(state)} user={user}/>;
                             default:
                                 return null;
                         }})()  : ''

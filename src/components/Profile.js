@@ -20,13 +20,13 @@ const Profile = (props) => {
     }
 
     return (
-        <div className="flex items-center justify-center h-screen bg-primary text-center">
+        <div className="flex items-center justify-center h-screen bg-primary text-center text-white">
             <div className="mt-12 bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-2/5">
                 <p className="text-center text-3xl text-white mb-6 font-semibold flex items-center mx-auto">Profilom</p>
                 <form onSubmit={savePassword} className="flex flex-wrap items-center justify-center w-full">
                     {(vulogPassword === null) ? 
                     <div className="w-full flex items-center flex-col mb-3 mx-3 sm:w-1/2">
-                        <p className="text-white text-sm mb-1 font-semibold">Vulog jelszavad<span className="text-red-500 font-semibold">*</span></p>
+                        <p className="text-white text-sm mb-1 font-semibold">Vulog jelszavam<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                         <button className="mt-3 w-full py-1 bg-white px-4 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary "><MdSave className="mr-2"/>Mentés</button>
                         <p className="text-white text-xs font-light mt-3 text-center">Ezt az adatot, csak a böngésződ belső tárhelye menti el, semmilyen külsős adatbázisba nem fog kerülni.</p>
@@ -38,6 +38,9 @@ const Profile = (props) => {
                     </div>
                     }
                 </form>
+                {(vulogPassword !== null) ?
+                <p className="mt-1">User ID: <span className="font-semibold">{(props.user.uid).toLowerCase()}</span></p>:''
+                }
             </div>
         </div>
     )
