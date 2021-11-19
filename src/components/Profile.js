@@ -50,7 +50,6 @@ const Profile = (props) => {
             } else {
                 props.setTokenState(false);
                 localStorage.removeItem('vulogPassword');
-                props.setVulogPassword(null);
                 toast.error('Hiba lépett fel a generálás során! Kérlek javítsd a jelszavad, vagy próbálkozz újra később!',{
                     style: {
                         borderRadius: '10px',

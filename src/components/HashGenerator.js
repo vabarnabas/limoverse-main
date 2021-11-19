@@ -8,6 +8,7 @@ import { toast } from 'react-hot-toast'
 
 const HashGenerator = (props) => {
 
+
     const[email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [license, setLicense] = useState('');
@@ -29,7 +30,6 @@ const HashGenerator = (props) => {
         phone: '',
         license: '',
     })
-
 
     const generateHash = (e) => {
         e.preventDefault();
@@ -56,8 +56,8 @@ const HashGenerator = (props) => {
     }
 
     const querySearchModal = async (e) => {
-        if (email !== '' && phone !== '' && license !== '') {
-            e.preventDefault()
+        e.preventDefault()
+        if (email !== '' || phone !== '' || license !== '') {
             if (email !== lastQuery.email) {
             const querySnapshot1 = await getDocs(q1);
             setEmailBlackList(querySnapshot1.docs.map((doc) => doc.data()))
@@ -89,7 +89,18 @@ const HashGenerator = (props) => {
 
     const showApproveModal = (e) => {
         e.preventDefault();
+        if (email !== '' && phone !== '' && license !== '' && birthday !== '') {
         setApproveModal(true);
+        } else {
+            toast.error('Kérlek tölts ki minden mezőt!',{
+                style: {
+                    borderRadius: '10px',
+                    background: '#282828',
+                    color: '#fff',
+                    padding: '0.5rem 1.25rem'
+                },
+            })
+        }
     }
 
     const handleChildClick = (e) => {
@@ -143,21 +154,21 @@ const HashGenerator = (props) => {
                 <form action="" className="flex flex-wrap items-center justify-center w-full" onSubmit={showApproveModal}>
                     <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                         <p className="text-white text-sm mb-1 font-semibold">E-mail cím<span className="text-red-500 font-semibold">*</span></p>
-                        <input required value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
                     <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                         <p className="text-white text-sm mb-1 font-semibold">Telefonszám<span className="text-red-500 font-semibold">*</span></p>
-                        <input required value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                        <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
                     <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                         <p className="text-white text-sm mb-1 font-semibold">Jogosítvány szám<span className="text-red-500 font-semibold">*</span></p>
-                        <input required value={license} onChange={(e) => setLicense(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                        <input value={license} onChange={(e) => setLicense(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
                     <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                         <p className="text-white text-sm mb-1 font-semibold">Születési Dátum<span className="text-red-500 font-semibold">*</span></p>
-                        <input placeholder='Vulog dátumforma' required value={birthday} onChange={(e) => setBirthday(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                        <input placeholder='Vulog dátumforma' value={birthday} onChange={(e) => setBirthday(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
-                    <div className="flex items-center justify-center mt-2 sm:w-5/6 w-4/6">
+                    <div className="flex items-center justify-center mt-1 sm:w-5/6 w-4/6">
                     <button className="w-11/12 py-1 bg-white px-4 rounded-md  flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary "><HiServer className="mr-2"/>Generálás</button>
                     <button onClick={querySearchModal} className="ml-2 bg-white hover:bg-gray-200 rounded-md py-2 px-2 flex items-center justify-center"><HiSearch className="text-black"/></button>
                     </div>
