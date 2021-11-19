@@ -11,7 +11,6 @@ const HashGenerator = (props) => {
     const[email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [license, setLicense] = useState('');
-    const [birthday, setBirthday] = useState('');
 
     const [emailBlackList, setEmailBlackList] = useState([]);
     const [phoneBlackList, setPhoneBlackList] = useState([]);
@@ -37,13 +36,11 @@ const HashGenerator = (props) => {
             email: sha256(email.toLocaleLowerCase().replace(' ', '')),
             phone: sha256(phone.replace(' ', '').slice(-9)),
             license: sha256(license.toLocaleLowerCase().replace(' ', '')),
-            birthday: sha256(birthday),
             uID: props.user.email
         })
         setEmail('');
         setPhone('');
         setLicense('');
-        setBirthday('');
         setApproveModal(false);
         toast.success('Sikeres feltöltés!',{
                 style: {
@@ -84,7 +81,6 @@ const HashGenerator = (props) => {
         setEmail('');
         setPhone('');
         setLicense('');
-        setBirthday('');
     }
 
     const showApproveModal = (e) => {
@@ -152,10 +148,6 @@ const HashGenerator = (props) => {
                     <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                         <p className="text-white text-sm mb-1 font-semibold">Jogosítvány szám<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={license} onChange={(e) => setLicense(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
-                    </div>
-                    <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
-                        <p className="text-white text-sm mb-1 font-semibold">Születési Dátum<span className="text-red-500 font-semibold">*</span></p>
-                        <input required value={birthday} onChange={(e) => setBirthday(e.target.value)} type="date" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
                     <div className="flex items-center justify-center mt-2 sm:w-5/6 w-4/6">
                     <button className="w-11/12 py-1 bg-white px-4 rounded-md  flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary "><HiServer className="mr-2"/>Generálás</button>
