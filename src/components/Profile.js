@@ -6,19 +6,24 @@ import { toast } from 'react-hot-toast'
 
 const Profile = (props) => {
     const [password, setPassword] = useState('');
+    // useState is needed here!!!
 
     const savePassword = (e) => {
         e.preventDefault();
         localStorage.setItem('vulogPassword', password);
+        props.setVulogPassword(password);
+        getToken();
     }
 
     const resetPassword = (e) => {
         e.preventDefault();
+        props.setVulogPassword(null);
     }
 
     const removePassword = (e) => {
         e.preventDefault();
         localStorage.removeItem('vulogPassword');
+        props.setVulogPassword(null);
     }
 
     const getToken = () => {
@@ -43,7 +48,10 @@ const Profile = (props) => {
                 },
             })
             } else {
-                toast.error('Hiba lépett fel a generálás során!',{
+                props.setTokenState(false);
+                localStorage.removeItem('vulogPassword');
+                props.setVulogPassword(null);
+                toast.error('Hiba lépett fel a generálás során! Kérlek javítsd a jelszavad, vagy próbálkozz újra később!',{
                     style: {
                         borderRadius: '10px',
                         background: '#282828',
@@ -81,7 +89,7 @@ const Profile = (props) => {
             <div className="mt-12 bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-2/5">
                 <p className="text-center text-3xl text-white mb-6 font-semibold flex items-center mx-auto">Profilom</p>
                 <form onSubmit={savePassword} className="flex flex-wrap items-center justify-center w-full">
-                    {(localStorage.getItem('vulogPassword') === null) ? 
+                    {(props.vulogPassword === null) ? 
                     <div className="w-full flex items-center flex-col mb-3 mx-3 sm:w-1/2">
                         <p className="text-white text-sm mb-1 font-semibold">Vulog jelszavam<span className="text-red-500 font-semibold">*</span></p>
                         <input required value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
@@ -90,7 +98,7 @@ const Profile = (props) => {
                     </div>:''
                     }
                 </form>
-                {(localStorage.getItem('vulogPassword') !== null) ?
+                {(props.vulogPassword !== null) ?
                 <div className="flex flex-col items-center justify-center mt1-">
                     <div className="w-full flex items-center justify-center text-white">
                         <p className="">Vulog jelszavam: <span className="font-semibold">Mentve</span></p>
@@ -99,7 +107,7 @@ const Profile = (props) => {
                     </div>
                     <div className="flex">
                         <p className="">Bearer Token: <span className="font-semibold">{(props.token ? (props.tokenState ? 'Mentve' : 'Lejárt') : 'Nincs')}</span></p>
-                        <button onClick={getToken} className="ml-2"><HiRefresh /></button>
+                        <button onClick={getToken} className="ml-2"><HiRefresh className="hover:text-gray-200"/></button>
                     </div>
                     <p className="">User ID: <span className="font-semibold">{(props.user.uid).toLowerCase()}</span></p>
                 </div>

@@ -32,7 +32,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 initializeFirestore(app, {experimentalForceLongPolling: true});
-
 //Set Up Authentication
 const auth = getAuth(app);
 
@@ -44,6 +43,7 @@ function App() {
   const [pageState, setPageState] = useState('Menu');
   const [token, setToken] = useState('');
   const [tokenState, setTokenState] = useState(false);
+  const [vulogPassword, setVulogPassword] = useState(localStorage.getItem('vulogPassword'));
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
@@ -59,7 +59,7 @@ function App() {
                             case 'Menu':
                                 return <Menu setPageState={(state) => setPageState(state)}/>;
                             case 'Profile':
-                                return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user}/>;
+                                return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
                             default:
                                 return null;
                         }})()  : ''
