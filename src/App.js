@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Menu from './components/Menu';
 import Profile from './components/Profile';
+import Charge from './components/Charge';
 
 //Hooks & Others
 import firebase from 'firebase/compat/app';
@@ -44,6 +45,17 @@ function App() {
   const [token, setToken] = useState('');
   const [tokenState, setTokenState] = useState(false);
   const [vulogPassword, setVulogPassword] = useState(localStorage.getItem('vulogPassword'));
+  const [smallWindow, setSmallWindow] = useState(window.innerWidth < 480)
+
+  const windowSize = () => {
+    if (window.innerWidth < 480) {
+      setSmallWindow(true)
+    } else {
+      setSmallWindow(false)
+    }
+  }
+  
+  window.addEventListener('resize', windowSize)
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
@@ -57,9 +69,11 @@ function App() {
                             case 'Hash':
                                 return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
                             case 'Menu':
-                                return <Menu setPageState={(state) => setPageState(state)}/>;
+                                return <Menu smallWindow={smallWindow} setPageState={(state) => setPageState(state)}/>;
                             case 'Profile':
                                 return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
+                            case 'Charge':
+                                return <Charge smallWindow={smallWindow}/>;
                             default:
                                 return null;
                         }})()  : ''
