@@ -73,7 +73,7 @@ function App() {
                             case 'Profile':
                                 return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
                             case 'Charge':
-                                return <Charge smallWindow={smallWindow}/>;
+                                return <Charge smallWindow={smallWindow} firestore={firestore} auth={auth} user={user}/>;
                             default:
                                 return null;
                         }})()  : ''
