@@ -101,6 +101,14 @@ const Charge = (props) => {
             price: price,
             uID: props.user.email,
         })
+        await setDoc(doc(props.firestore, 'aggregate', 'charges'), {value: increment(1)}, {merge: true})
+        setTripId('');
+        setChargeStart('');
+        setChargeEnd('');
+        setPlace('');
+        setAutonomyStart(0);
+        setAutonomyEnd(0);
+        setPrice(0);
     }
 
     return (
