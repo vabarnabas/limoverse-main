@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast'
 const HashGenerator = (props) => {
 
 
-    const[email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [license, setLicense] = useState('');
     const [birthday, setBirthday] = useState('');

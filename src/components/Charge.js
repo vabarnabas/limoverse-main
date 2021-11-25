@@ -1,20 +1,26 @@
 import React from 'react'
 import { useState } from 'react'
-import { HiLightningBolt, HiServer, HiCode, HiArrowSmLeft, HiArrowSmRight, HiDownload } from 'react-icons/hi'
+import { HiLightningBolt, HiServer, HiCode, HiArrowSmLeft, HiArrowSmRight, HiDownload, HiClock } from 'react-icons/hi'
 import { MdLocalGasStation } from 'react-icons/md'
 import { v4 as uuidv4 } from 'uuid';
-import { doc, setDoc, collection, query, where, getDocs, limit, increment, updateDoc } from "firebase/firestore"; 
+import { doc, setDoc, increment } from "firebase/firestore"; 
 import MOLRefuel from '../refuel.json'
 import MOLCharge from '../charge.json'
 
 const Charge = (props) => {
-
+    
     const [page, setPage] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [valueJSON, setValueJSON] = useState([]);
 
-    const [place, setPlace] = useState('');
+    const [tripId, setTripId] = useState('');
+    const [price, setPrice] = useState(0);
+    const [chargeStart, setChargeStart] = useState('');
+    const [chargeEnd, setChargeEnd] = useState('');
     const [type, setType] = useState('Plugee');
+    const [place, setPlace] = useState('');
+    const [autonomyStart, setAutonomyStart] = useState(0);
+    const [autonomyEnd, setAutonomyEnd] = useState(0);
 
     const [placeList, setPlaceList] = useState([]);
     const [selfSearch, setSelfSearch] = useState(true);
@@ -23,6 +29,21 @@ const Charge = (props) => {
 
     const handleChildClick = (e) => {
         e.stopPropagation();
+    }
+
+    const addZero = (i) => {
+        if (i < 10) {i = "0" + i}
+        return i;
+      }
+
+    const atChargeStart = () => {
+        const date = new Date(Date.now());
+        setChargeStart(date.getFullYear() + '.' + addZero(date.getMonth()) + '.' + addZero(date.getDate()) + ' ' + addZero(date.getHours()) + ':' + addZero(date.getMinutes()))
+    }
+
+    const atChargeEnd = () => {
+        const date = new Date(Date.now() + 600000);
+        setChargeEnd(date.getFullYear() + '.' + addZero(date.getMonth()) + '.' + addZero(date.getDate()) + ' ' + addZero(date.getHours()) + ':' + addZero(date.getMinutes()))
     }
 
     const changeType = (e) => {
@@ -47,7 +68,7 @@ const Charge = (props) => {
         setSelfSearch(false);
     }
 
-    const importJSON = async () => {
+    const importFromJSON = async () => {
         if (JSON.parse(valueJSON).version === 'legacy') {
             await setDoc(doc(props.firestore, 'charge', uuidv4()),{
                 tripId: JSON.parse(valueJSON).tripId,
@@ -67,6 +88,20 @@ const Charge = (props) => {
         }
     }
 
+    const newCharge = async () => {
+        await setDoc(doc(props.firestore, 'charge', uuidv4()),{
+            tripId: tripId,
+            chargeStart: chargeStart,
+            chargeEnd: chargeEnd,
+            type: type,
+            place: place,
+            autonomyStart: autonomyStart,
+            autonomyEnd: autonomyEnd,
+            price: price,
+            uID: props.user.email,
+        })
+    }
+
     return (
         <div onClick={() => setSelfSearch(false)} className="flex items-center justify-center h-screen">
             {/* Modal */}
@@ -79,11 +114,12 @@ const Charge = (props) => {
                         <input value={valueJSON} onChange={(e) => setValueJSON(e.target.value)} type="text" className="flex w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                     </div>
                     <div className="mt-1 flex justify-center w-full">
-                    <button onClick={importJSON} className="w-3/4 mx-4 py-1 bg-white px-5 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiDownload className="mr-2"/>Betöltés</button>
+                    <button onClick={importFromJSON} className="w-3/4 mx-4 py-1 bg-white px-5 rounded-md flex items-center justify-center hover:bg-gray-200 font-semibold text-secondary"><HiDownload className="mr-2"/>Betöltés</button>
                     </div>
                 </div>
             </div>:''
             }
+            {/* Form */}
             <div className="mt-12 bg-secondary py-7 px-8 rounded-md w-4/5 flex items-center justify-center flex-col sm:w-2/5 text-center">
                 {page > 0 &&
                     <HiArrowSmLeft onClick={() => setPage(page-1)} className="text-white hover:text-gray-200 absolute left-0 text-4xl sm:hidden"/>
@@ -92,29 +128,35 @@ const Charge = (props) => {
                     <HiArrowSmRight onClick={() => setPage(page+1)} className="text-white hover:text-gray-200 absolute right-0 text-4xl sm:hidden"/>
                 }
                 <p className="text-center text-3xl text-white mb-6 font-semibold flex items-center mx-auto">Töltés/Tankolás</p>
-                <form action="" className="flex flex-wrap items-center justify-center w-full max-h-screen">
+                <form onSubmit={newCharge} action="" className="flex flex-wrap items-center justify-center w-full max-h-screen">
                         {page === 0 &&
                         <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Trip ID<span className="text-red-500 font-semibold">*</span></p>
-                            <input type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <input required value={tripId} onChange={(e) => setTripId(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                         </div>
                         }
                         {page === 0 &&
                         <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Összeg<span className="text-red-500 font-semibold">*</span></p>
-                            <input type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <input required value={price} onChange={(e) => setPrice(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                         </div>
                         }
                         {page === 0 &&
                         <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Töltés kezdete<span className="text-red-500 font-semibold">*</span></p>
-                            <input type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <div className="relative flex items-center justify-center">
+                            <input required value={chargeStart} onChange={(e) => setChargeStart(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <HiClock onClick={atChargeStart} className="absolute right-2 hover:text-gray-200 text-white"/>
+                            </div>
                         </div>
                         }
                         {page === 0 &&
                         <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Töltés vége<span className="text-red-500 font-semibold">*</span></p>
-                            <input type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <div className="relative flex items-center justify-center">
+                            <input required value={chargeEnd} onChange={(e) => setChargeEnd(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <HiClock onClick={atChargeEnd} className="absolute right-2 hover:text-gray-200 text-white"/>
+                            </div>
                         </div>
                         }
                         {((props.smallWindow) ? page === 1 : true) &&
@@ -126,7 +168,7 @@ const Charge = (props) => {
                         {((props.smallWindow) ? page === 1 : true) &&
                         <div onClick={(e) => e.stopPropagation()} className="group relative w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Helyszín<span className="text-red-500 font-semibold">*</span></p>
-                            <input onFocus={() => setSelfSearch(true)} onChange={(e) => searchPlace(e.target.value)} value={place} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <input required onFocus={() => setSelfSearch(true)} onChange={(e) => searchPlace(e.target.value)} value={place} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                             {(place !== '' && selfSearch) ?
                             <div className="w-full absolute top-14 bg-tertiary mt-1.5 rounded-md max-h-24 overflow-y-scroll scrollbar-hide">
                             {placeList.map((place) => (
@@ -141,13 +183,13 @@ const Charge = (props) => {
                         {((props.smallWindow) ? page === 1 : true) &&
                         <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Kezdeti hatótáv<span className="text-red-500 font-semibold">*</span></p>
-                            <input type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <input required value={autonomyStart} onChange={(e) => setAutonomyStart(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                         </div>
                         }
                         {((props.smallWindow) ? page === 1 : true) &&
                         <div className="w-full flex flex-col mb-3 mx-3 sm:w-2/5">
                             <p className="text-white text-sm mb-1 font-semibold">Vég hatótáv<span className="text-red-500 font-semibold">*</span></p>
-                            <input type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
+                            <input required value={autonomyEnd} onChange={(e) => setAutonomyEnd(e.target.value)} type="text" className="w-full py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary"/>
                         </div>
                         }
                         <div className="flex items-center justify-center mt-2 sm:w-5/6 w-4/6">
