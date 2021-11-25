@@ -88,7 +88,8 @@ const Charge = (props) => {
         }
     }
 
-    const newCharge = async () => {
+    const newCharge = async (e) => {
+        e.preventDefault();
         await setDoc(doc(props.firestore, 'charge', uuidv4()),{
             tripId: tripId,
             chargeStart: chargeStart,
