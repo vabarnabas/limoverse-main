@@ -4,6 +4,7 @@ import { HiLightningBolt, HiServer, HiCode, HiArrowSmLeft, HiArrowSmRight, HiDow
 import { MdLocalGasStation } from 'react-icons/md'
 import { v4 as uuidv4 } from 'uuid';
 import { doc, setDoc, increment } from "firebase/firestore"; 
+import { toast } from 'react-hot-toast';
 import MOLRefuel from '../refuel.json'
 import MOLCharge from '../charge.json'
 
@@ -85,6 +86,14 @@ const Charge = (props) => {
             await setDoc(doc(props.firestore, 'aggregate', 'charges'), {value: increment(1)}, {merge: true})
             setValueJSON([]);
             setShowModal(false);
+            toast.success('Sikeres feltöltés!',{
+                style: {
+                    borderRadius: '10px',
+                    background: '#282828',
+                    color: '#fff',
+                    padding: '0.5rem 1.25rem'
+            },
+            })
         }
     }
 
@@ -109,6 +118,14 @@ const Charge = (props) => {
         setAutonomyStart(0);
         setAutonomyEnd(0);
         setPrice(0);
+        toast.success('Sikeres feltöltés!',{
+            style: {
+                borderRadius: '10px',
+                background: '#282828',
+                color: '#fff',
+                padding: '0.5rem 1.25rem'
+        },
+        })
     }
 
     return (
