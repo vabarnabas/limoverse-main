@@ -115,9 +115,9 @@ const Charge = (props) => {
         setChargeStart('');
         setChargeEnd('');
         setPlace('');
-        setAutonomyStart(0);
-        setAutonomyEnd(0);
-        setPrice(0);
+        setAutonomyStart('');
+        setAutonomyEnd('');
+        setPrice('');
         toast.success('Sikeres feltöltés!',{
             style: {
                 borderRadius: '10px',
@@ -151,7 +151,7 @@ const Charge = (props) => {
                     <HiArrowSmLeft onClick={() => setPage(page-1)} className="text-white hover:text-gray-200 absolute left-0 text-4xl sm:hidden"/>
                 }
                 {page < 1 &&
-                    <HiArrowSmRight onClick={() => setPage(page+1)} className="text-white hover:text-gray-200 absolute right-0 text-4xl sm:hidden"/>
+                    <HiArrowSmRight onClick={() => setPage(page+1)} className=" text-white hover:text-gray-200 absolute right-0 text-4xl sm:hidden"/>
                 }
                 <p className="text-center text-3xl text-white mb-6 font-semibold flex items-center mx-auto">Töltés/Tankolás</p>
                 <form onSubmit={newCharge} action="" className="flex flex-wrap items-center justify-center w-full max-h-screen">

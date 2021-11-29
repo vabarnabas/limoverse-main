@@ -9,10 +9,9 @@ import Profile from './components/Profile';
 import Charge from './components/Charge';
 
 //Hooks & Others
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'
 import { useState } from 'react';
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from "firebase/app"
@@ -46,16 +45,15 @@ function App() {
   const [tokenState, setTokenState] = useState(false);
   const [vulogPassword, setVulogPassword] = useState(localStorage.getItem('vulogPassword'));
   const [smallWindow, setSmallWindow] = useState(window.innerWidth < 480)
+  const [windowSize, setWindowSize] = useState((window.innerWidth < 640 ? 'small' : (window.innerWidth < 768 ? 'medium' : 'large')))
 
-  const windowSize = () => {
-    if (window.innerWidth < 480) {
-      setSmallWindow(true)
-    } else {
-      setSmallWindow(false)
-    }
+  const getWindowSize = () => {
+    window.innerWidth <= 640 ? setWindowSize('small') : (window.innerWidth <= 768 ? setWindowSize('medium') : setWindowSize('large'))
   }
   
-  window.addEventListener('resize', windowSize)
+  console.log(windowSize)
+
+  window.addEventListener('resize', getWindowSize)
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
@@ -69,7 +67,7 @@ function App() {
                             case 'Hash':
                                 return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
                             case 'Menu':
-                                return <Menu smallWindow={smallWindow} setPageState={(state) => setPageState(state)}/>;
+                                return <Menu windowSize={windowSize} setPageState={(state) => setPageState(state)}/>;
                             case 'Profile':
                                 return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
                             case 'Charge':

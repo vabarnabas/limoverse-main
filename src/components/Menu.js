@@ -36,13 +36,13 @@ const Menu = (props) => {
             message: '',
             version: '0.0.1',
             pageState: 'Hash',
-        }
+        },
     ]
 
     const [menuPage, setMenuPage] = useState(0);
     
     const incPage = () => {
-        if (menuPage < (Math.ceil(menuIcons.length/((props.smallWindow) ? 2 : 4))-1)) {
+        if (menuPage < (Math.ceil(menuIcons.length/((props.windowSize === 'small') ? 2 : ((props.windowSize === 'medium') ? 3 : 4)))-1)) {
             setMenuPage(menuPage+1)
         }
     }
@@ -60,11 +60,11 @@ const Menu = (props) => {
                 {menuPage > 0 &&
                     <HiArrowCircleLeft onClick={decPage} className="text-white hover:text-gray-200 absolute left-5 text-4xl"/>
                 }
-                {menuPage < (Math.ceil(menuIcons.length/((props.smallWindow) ? 2 : 4))-1) &&
+                {menuPage < (Math.ceil(menuIcons.length/((props.windowSize === 'small') ? 2 : ((props.windowSize === 'medium') ? 3 : 4)))-1) &&
                     <HiArrowCircleRight onClick={incPage} className="text-white hover:text-gray-200 absolute right-5 text-4xl"/>
                 }
-            {menuIcons.slice(((props.smallWindow) ? 0 + menuPage*2 : 0 + menuPage*4), ((props.smallWindow) ? 2 + menuPage*2 : 4 + menuPage*4)).map((menu) => (
-            <div onClick={() => props.setPageState(menu.pageState)} key={menu.id} className="min-w-min sm:mx-10 my-4 relative flex w-1/2 h-1/3 sm:w-56 sm:h-64 flex-col bg-tertiary hover:bg-quaternary text-white rounded-xl items-center justify-center flex-wrap">
+            {menuIcons.slice(((props.windowSize === 'small') ? 0 + menuPage*2 : ((props.windowSize === 'medium') ? 0 + menuPage*3 : 0 + menuPage*4)), ((props.windowSize === 'small') ? 2 + menuPage*2 : ((props.windowSize === 'medium') ? 3 + menuPage*3 : 4 + menuPage*4))).map((menu) => (
+            <div onClick={() => props.setPageState(menu.pageState)} key={menu.id} className="min-w-min sm:mx-10 md:mx-4 xl:mx-10 my-4 relative flex w-1/2 h-1/3 md:w-44 md:h-64 lg:w-48 xl:w-56 flex-col bg-tertiary hover:bg-quaternary text-white rounded-xl items-center justify-center flex-wrap">
                 <p className="px-4 font-semibold text-3xl text-center">{menu.title}</p>    
                 <p className="absolute  bottom-2 right-3 text-xs">{menu.version}</p>
                 {menu.vulogRequired ?
