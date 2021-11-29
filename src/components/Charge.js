@@ -5,8 +5,8 @@ import { MdLocalGasStation } from 'react-icons/md'
 import { v4 as uuidv4 } from 'uuid';
 import { doc, setDoc, increment } from "firebase/firestore"; 
 import { toast } from 'react-hot-toast';
-import MOLRefuel from '../refuel.json'
-import MOLCharge from '../charge.json'
+import MOLRefuel from '../json/refuel.json'
+import MOLCharge from '../json/charge.json'
 
 const Charge = (props) => {
     
@@ -15,13 +15,13 @@ const Charge = (props) => {
     const [valueJSON, setValueJSON] = useState([]);
 
     const [tripId, setTripId] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState('');
     const [chargeStart, setChargeStart] = useState('');
     const [chargeEnd, setChargeEnd] = useState('');
     const [type, setType] = useState('Plugee');
     const [place, setPlace] = useState('');
-    const [autonomyStart, setAutonomyStart] = useState(0);
-    const [autonomyEnd, setAutonomyEnd] = useState(0);
+    const [autonomyStart, setAutonomyStart] = useState('');
+    const [autonomyEnd, setAutonomyEnd] = useState('');
 
     const [placeList, setPlaceList] = useState([]);
     const [selfSearch, setSelfSearch] = useState(true);
@@ -105,9 +105,9 @@ const Charge = (props) => {
             chargeEnd: chargeEnd,
             type: type,
             place: place,
-            autonomyStart: autonomyStart,
-            autonomyEnd: autonomyEnd,
-            price: price,
+            autonomyStart: parseInt(autonomyStart),
+            autonomyEnd: parseInt(autonomyEnd),
+            price: parseInt(price),
             uID: props.user.email,
         })
         await setDoc(doc(props.firestore, 'aggregate', 'charges'), {value: increment(1)}, {merge: true})
