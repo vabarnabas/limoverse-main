@@ -53,8 +53,6 @@ const Menu = (props) => {
         }
     }
 
-    console.log(menuPage)
-
     return (
         <div className="relative flex items-center justify-center h-full flex-col sm:flex-row">
                 {menuPage > 0 &&
@@ -64,7 +62,7 @@ const Menu = (props) => {
                     <HiArrowCircleRight onClick={incPage} className="text-white hover:text-gray-200 absolute right-5 text-4xl"/>
                 }
             {menuIcons.slice(((props.windowSize === 'small') ? 0 + menuPage*2 : ((props.windowSize === 'medium') ? 0 + menuPage*3 : 0 + menuPage*4)), ((props.windowSize === 'small') ? 2 + menuPage*2 : ((props.windowSize === 'medium') ? 3 + menuPage*3 : 4 + menuPage*4))).map((menu) => (
-            <div onClick={() => props.setPageState(menu.pageState)} key={menu.id} className="min-w-min sm:mx-10 md:mx-4 xl:mx-10 my-4 relative flex w-1/2 h-1/3 md:w-44 md:h-64 lg:w-48 xl:w-56 flex-col bg-tertiary hover:bg-quaternary text-white rounded-xl items-center justify-center flex-wrap">
+            <div onClick={() => props.setPageState(menu.pageState)} key={menu.id} className="min-w-min sm:mx-10 md:mx-4 xl:mx-7 my-4 relative flex w-1/2 h-1/3 md:w-48 md:h-64 lg:w-52 xl:w-56 flex-col bg-tertiary hover:bg-quaternary text-white rounded-xl items-center justify-center flex-wrap">
                 <p className="px-4 font-semibold text-3xl text-center">{menu.title}</p>    
                 <p className="absolute  bottom-2 right-3 text-xs">{menu.version}</p>
                 {menu.vulogRequired ?

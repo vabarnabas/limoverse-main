@@ -20,7 +20,7 @@ const Navbar = (props) => {
         setDropdown(false);
     }
     return (
-        <div className="text-white fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md z-20">
+        <div className="text-white fixed top-0 right-0 left-0 h-12 bg-tertiary w-screen flex items-center shadow-md z-20 overflow-hidden">
             <img onClick={() => props.setPageState('Menu')} src={limoverseLogo} alt="" className="fixed h-32 pl-4" />
             {dropdown ?
             <div onClick={() => setDropdown(false)}className="h-screen w-screen top-0 left-0 fixed flex z-40">

@@ -60,6 +60,7 @@ function App() {
       <Toaster position="top-left"/>
       <Navbar user={user} setLogin={(login) => setLogin(login)} setPageState={(state) => setPageState(state)} auth={auth} />
       {isLogin ? (user ? '' : <Login onClick={() => setLogin(false)} auth={auth}/>) : ''}
+      <div className="pt-12 h-full">
       {user ? (() =>
                         {switch(pageState) {
                             case 'News':
@@ -71,12 +72,13 @@ function App() {
                             case 'Profile':
                                 return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
                             case 'Charge':
-                                return <Charge smallWindow={smallWindow} firestore={firestore} auth={auth} user={user}/>;
+                                return <Charge windowSize={windowSize} firestore={firestore} auth={auth} user={user}/>;
                             default:
                                 return null;
                         }})()  : ''
                     }
-      <div className="text-white fixed bottom-2 left-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
+      </div>
+      <div className="text-white fixed bottom-2 right-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
     </div>
   );
 }
