@@ -190,7 +190,7 @@ const Charge = (props) => {
             {/* Left Side */}
             <div className={`relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-1/3 ${showCharges ? "lg:flex" : ""}`}>
                 {lastCharges.map((charge) => (
-                    <div key={uuidv4()} className="relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 ml-5 py-2 rounded-md text-white">
+                    <div key={uuidv4()} className="left-2 relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 py-1 rounded-md text-white">
                         <p className="pl-3 pt-1 pr-2 text-xs xl:text-sm font-bold">{charge.place}</p>
                         <p className="pb-1 text-xs xl:text-sm pl-3">{charge.date}</p>
                     </div>
