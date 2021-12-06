@@ -6,11 +6,14 @@ import plates from '../json/plates.json'
 
 const Damage = (props) => {
 
-    const [activePlate, setActivePlate] = useState('RTC077');
+    const [activePlate, setActivePlate] = useState('RIS182');
     const [displayLength, setDisplayLength] = useState(7);
-    const [displayPage, setDisplayPage] = useState(Math.ceil((plates.map((e) => {return e.plate}).indexOf(activePlate))/displayLength)-1);
+    const [displayPage, setDisplayPage] = useState(Math.ceil((plates.map((e) => {return e.plate}).indexOf(activePlate)+1)/displayLength)-1);
     const [pageInput, setPageInput] = useState(displayPage+1);
     const [isInput, setIsInput] = useState(false);
+
+    console.log(Math.ceil((plates.map((e) => {return e.plate}).indexOf(activePlate)+1)/displayLength))
+
 
     const decPage = () => {
         if (displayPage > 0) {
