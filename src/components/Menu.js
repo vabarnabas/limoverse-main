@@ -11,7 +11,7 @@ const Menu = (props) => {
             vulogRequired: false,
             message: '439 hátralévő',
             version: '0.0.1',
-            pageState: 'DCS',
+            pageState: 'Damage',
         },
         {
             id: uuidv4(),

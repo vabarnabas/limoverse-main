@@ -1,5 +1,5 @@
 import React from "react";
-import { collection, getDocs, query, onSnapshot, docs } from 'firebase/firestore'
+import { collection, onSnapshot, } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import { HiAnnotation, HiCode, HiCalendar, HiUser, HiExclamation } from 'react-icons/hi';
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { HiLightningBolt, HiServer, HiCode, HiArrowSmLeft, HiArrowSmRight, HiDownload, HiClock, HiChevronLeft, HiChevronRight, HiEye } from 'react-icons/hi'
+import { HiLightningBolt, HiServer, HiCode, HiDownload, HiClock, HiChevronLeft, HiChevronRight, HiEye } from 'react-icons/hi'
 import { MdLocalGasStation } from 'react-icons/md'
 import { v4 as uuidv4 } from 'uuid';
 import { doc, setDoc, increment } from "firebase/firestore"; 
@@ -188,7 +188,7 @@ const Charge = (props) => {
             }
             {/* Form */}
             {/* Left Side */}
-            <div className={`relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-1/3 ${showCharges ? "lg:flex" : ""}`}>
+            <div className={`relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-2/5 ${showCharges ? "lg:flex" : ""}`}>
                 {lastCharges.map((charge) => (
                     <div key={uuidv4()} className="left-2 relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 py-1 rounded-md text-white">
                         <p className="pl-3 pt-1 pr-2 text-xs xl:text-sm font-bold">{charge.place}</p>

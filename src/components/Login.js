@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { HiFingerPrint, HiKey, HiArrowNarrowLeft } from 'react-icons/hi';
+import React from 'react';
+import { HiFingerPrint, } from 'react-icons/hi';
 import { IoLogoFirebase } from 'react-icons/io5'; 
-import { useState, useEffect } from 'react';
-import {signInWithEmailAndPassword, sendPasswordResetEmail, getAuth } from "firebase/auth";
+import { useState, } from 'react';
+import {signInWithEmailAndPassword, } from "firebase/auth";
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -14,7 +14,6 @@ const Login = (props) => {
         signInWithEmailAndPassword(props.auth, email, password)
         .then((userCredential) => {
             // Signed in 
-            const user = userCredential.user;
             props.setPageState('Menu');
             // ...
           })

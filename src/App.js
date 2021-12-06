@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Menu from './components/Menu';
 import Profile from './components/Profile';
 import Charge from './components/Charge';
+import Damage from './components/Damage';
 
 //Hooks & Others
 import 'firebase/compat/firestore'
@@ -44,7 +45,6 @@ function App() {
   const [token, setToken] = useState('');
   const [tokenState, setTokenState] = useState(false);
   const [vulogPassword, setVulogPassword] = useState(localStorage.getItem('vulogPassword'));
-  const [smallWindow, setSmallWindow] = useState(window.innerWidth < 480)
   const [windowSize, setWindowSize] = useState((window.innerWidth < 640 ? 'small' : (window.innerWidth < 768 ? 'medium' : 'large')))
 
   const getWindowSize = () => {
@@ -73,6 +73,8 @@ function App() {
                                 return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
                             case 'Charge':
                                 return <Charge windowSize={windowSize} firestore={firestore} auth={auth} user={user}/>;
+                            case 'Damage':
+                                return <Damage />;
                             default:
                                 return null;
                         }})()  : ''
