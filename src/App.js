@@ -56,7 +56,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('displayLength') === null) {
-      localStorage.setItem('displayLength', 7)
+      localStorage.setItem('displayLength', (windowSize === 'small' ? 5 : 6))
     }
   })
 
@@ -79,7 +79,7 @@ function App() {
                             case 'Charge':
                               return <Charge windowSize={windowSize} firestore={firestore} auth={auth} user={user}/>;
                             case 'Damage':
-                              return <Damage />;
+                              return <Damage auth={auth} firestore={firestore} user={user} />;
                             case 'Settings':
                               return <Settings />;
                             default:
@@ -87,7 +87,7 @@ function App() {
                         }})()  : ''
                     }
       </div>
-      <div className="text-white fixed bottom-2 right-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
+      <div className="hidden md:flex text-white fixed bottom-2 right-3 cursor-default bg-tertiary py-1 px-3 text-sm rounded-md"><p className="">limoverse 2.0.0 dev</p></div>
     </div>
   );
 }
