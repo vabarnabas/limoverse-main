@@ -12,7 +12,6 @@ const Charge = (props) => {
     
     const [page, setPage] = useState(0);
     const [showModal, setShowModal] = useState(false);
-    const [showCharges, setShowCharges] = useState(false);
     const [valueJSON, setValueJSON] = useState([]);
 
     const [tripId, setTripId] = useState('');
@@ -188,7 +187,7 @@ const Charge = (props) => {
             }
             {/* Form */}
             {/* Left Side */}
-            <div className={`relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-2/5 ${showCharges ? "lg:flex" : ""}`}>
+            <div className="relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-2/5 md:flex">
                 {lastCharges.map((charge) => (
                     <div key={uuidv4()} className="left-2 relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 py-1 rounded-md text-white">
                         <p className="pl-3 pt-1 pr-2 text-xs xl:text-sm font-bold">{charge.place}</p>
@@ -279,7 +278,6 @@ const Charge = (props) => {
                             <button onClick={(e) => {e.preventDefault(); setShowModal(true);}} className="ml-2 bg-white hover:bg-gray-200 rounded-md py-2 px-2 flex items-center justify-center"><HiCode className="text-black"/></button>
                         </div>
                     </form>
-                    <HiEye onClick={() => setShowCharges(!showCharges)} className="hidden lg:flex text-white mt-3 hover:text-gray-200"/>
             </div>
         </div>
     )

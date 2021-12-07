@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { HiLightningBolt, HiServer, HiCode, HiDownload, HiClock, HiChevronLeft, HiChevronRight, HiEye } from 'react-icons/hi'
+import { HiChevronLeft, HiChevronRight, HiCheck, HiExclamationCircle } from 'react-icons/hi'
 import plates from '../json/plates.json'
 
 const Damage = (props) => {
@@ -33,26 +33,23 @@ const Damage = (props) => {
 
     const changePage = (e) => {
         e.preventDefault();
-        if (pageInput-1 <= Math.ceil(plates.length/displayLength)-1) {
+        if (pageInput-1 > 0 && pageInput-1 <= Math.ceil(plates.length/displayLength)-1) {
             setDisplayPage(parseInt(pageInput)-1)
-        } else {
-            setDisplayPage(Math.ceil(plates.length/displayLength)-1)
-        }
-        if (pageInput-1 > 0) {
-            setDisplayPage(parseInt(pageInput)-1)
-        } else {
-            setDisplayPage(0)
         }
         setIsInput(false)
     }
 
     return (
         <div className="flex items-center justify-center h-full bg-secondary">
-            <div className="lg:flex relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-2/5">
+            <div className="md:flex relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-2/5">
                 {plates.slice(0+(displayPage*displayLength),displayLength+(displayPage*displayLength)).map((charge) => (
-                    <div key={uuidv4()} className={`left-2 relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 py-1 rounded-md text-white ${charge.plate === activePlate ? 'border-solid border-greenTop border-2' : ''}`}>
+                    <div onClick={() => setActivePlate(charge.plate)} key={uuidv4()} className={`left-2 relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 rounded-md text-white border-solid border-2 ${charge.plate === activePlate ? ' border-greenTop' : 'border-tertiary'}`}>
                         <p className="pl-3 pt-1 pr-2 text-xs xl:text-sm font-bold">{charge.plate}</p>
-                        <p className="pb-1 text-xs xl:text-sm pl-3">{charge.id}</p>
+                        <p className="pb-1 text-xs xl:text-sm pl-3 w-2/3 overflow-hidden">{charge.id}</p>
+                        <div className="absolute right-4 text-2xl flex">
+                        <HiCheck className="" />
+                        <HiExclamationCircle     className="" />
+                        </div>
                     </div>
                 ))}
                 <div className="bg-secondary mt-auto py-2 w-full flex items-center justify-center text-white">
