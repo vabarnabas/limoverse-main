@@ -8,6 +8,7 @@ import { toast } from 'react-hot-toast'
 
 const HashGenerator = (props) => {
 
+    document.title = 'Limoverse - Hash Generátor'
 
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');

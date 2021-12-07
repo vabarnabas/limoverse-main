@@ -8,6 +8,7 @@ import Menu from './components/Menu';
 import Profile from './components/Profile';
 import Charge from './components/Charge';
 import Damage from './components/Damage';
+import Settings from './components/Settings'
 
 //Hooks & Others
 import 'firebase/compat/firestore'
@@ -64,19 +65,21 @@ function App() {
       {user ? (() =>
                         {switch(pageState) {
                             case 'News':
-                                return <News firestore={firestore} auth={auth}/>;
+                              return <News firestore={firestore} auth={auth}/>;
                             case 'Hash':
-                                return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
+                              return <HashGenerator firestore={firestore} auth={auth} user={user}/>;
                             case 'Menu':
-                                return <Menu windowSize={windowSize} setPageState={(state) => setPageState(state)}/>;
+                              return <Menu windowSize={windowSize} setPageState={(state) => setPageState(state)}/>;
                             case 'Profile':
-                                return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
+                              return <Profile setPageState={(state) => setPageState(state)} setToken={(token) => setToken(token)} setVulogPassword={(vulogPassword) => setVulogPassword(vulogPassword)} setTokenState={(tokenState) => setTokenState(tokenState)} token={token} tokenState={tokenState} user={user} vulogPassword={vulogPassword}/>;
                             case 'Charge':
-                                return <Charge windowSize={windowSize} firestore={firestore} auth={auth} user={user}/>;
+                              return <Charge windowSize={windowSize} firestore={firestore} auth={auth} user={user}/>;
                             case 'Damage':
-                                return <Damage />;
+                              return <Damage />;
+                            case 'Settings':
+                              return <Settings />;
                             default:
-                                return null;
+                              return null;
                         }})()  : ''
                     }
       </div>

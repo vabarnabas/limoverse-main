@@ -1,9 +1,11 @@
 import React from 'react'
-import { HiArrowCircleLeft , HiArrowCircleRight } from 'react-icons/hi'
+import { HiArrowCircleLeft , HiArrowCircleRight, HiKey } from 'react-icons/hi'
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
 const Menu = (props) => {
+    document.title = 'Limoverse - Main'
+
     const menuIcons = [
         {
             id: uuidv4(),
@@ -66,7 +68,7 @@ const Menu = (props) => {
                 <p className="px-4 font-semibold text-3xl text-center">{menu.title}</p>    
                 <p className="absolute  bottom-2 right-3 text-xs">{menu.version}</p>
                 {menu.vulogRequired ?
-                <p className="absolute  bottom-2 left-3 text-xs">Vulog jelszó szükséges</p>:''
+                    <HiKey className="absolute bottom-2 left-3"/>:''
                 }
                 {(menu.message !== '') ?
                 <div className="absolute bg-red-400 left-3 top-3 rounded-md">

@@ -27,7 +27,7 @@ const Navbar = (props) => {
                 <div onClick={handleChildClick} className="fixed top-14 right-0 mr-4 bg-tertiary flex flex-col rounded-md items-center text-white shadow-md">
                     <p onClick={() => props.setPageState('Profile')} className="mt-2 px-16 py-1 hover:bg-quaternary w-full text-center">Profilom</p>
                     <p onClick={() => props.setPageState('News')} className=" px-16 py-1 hover:bg-quaternary w-full text-center">Hírek</p>
-                    <p className="py-1 hover:bg-quaternary w-full text-center">Beállítások</p>
+                    <p onClick={() => props.setPageState('Settings')} className="py-1 hover:bg-quaternary w-full text-center">Beállítások</p>
                     
                     <p onClick={onSignOut} className="mb-2 py-1 hover:bg-quaternary w-full text-center cursor-pointer">Kijelentkezés</p>
                 </div>

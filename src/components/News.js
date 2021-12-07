@@ -6,6 +6,8 @@ import { HiAnnotation, HiCode, HiCalendar, HiUser, HiExclamation } from 'react-i
 
 const News = (props) => {
 
+    document.title = 'Limoverse - Hírek'
+
     const [announcements, setAnnouncements] = useState([]);
 
     useEffect(() => {

@@ -10,6 +10,8 @@ import MOLCharge from '../json/charge.json'
 
 const Charge = (props) => {
     
+    document.title = 'Limoverse - Töltés/Tankolás'
+
     const [page, setPage] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [valueJSON, setValueJSON] = useState([]);
@@ -169,7 +171,7 @@ const Charge = (props) => {
     }
 
     return (
-        <div onClick={() => setSelfSearch(false)} className="flex items-center justify-center h-full bg-secondary">
+        <div onClick={() => setSelfSearch(false)} className="screen-container">
             {/* Modal */}
             {showModal ?
             <div onClick={() => setShowModal(false)} className="fixed flex items-center justify-center h-screen w-screen top-0 right-0 bg-primary z-50 bg-opacity-90">

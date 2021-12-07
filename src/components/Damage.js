@@ -6,14 +6,12 @@ import plates from '../json/plates.json'
 
 const Damage = (props) => {
 
+    document.title = 'Limoverse - DCS'
     const [activePlate, setActivePlate] = useState('RIS182');
-    const [displayLength, setDisplayLength] = useState(7);
+    const [displayLength, setDisplayLength] = useState(parseInt(localStorage.getItem('displayLength')));
     const [displayPage, setDisplayPage] = useState(Math.ceil((plates.map((e) => {return e.plate}).indexOf(activePlate)+1)/displayLength)-1);
     const [pageInput, setPageInput] = useState(displayPage+1);
     const [isInput, setIsInput] = useState(false);
-
-    console.log(Math.ceil((plates.map((e) => {return e.plate}).indexOf(activePlate)+1)/displayLength))
-
 
     const decPage = () => {
         if (displayPage > 0) {
@@ -40,15 +38,15 @@ const Damage = (props) => {
     }
 
     return (
-        <div className="flex items-center justify-center h-full bg-secondary">
+        <div className="screen-container">
             <div className="md:flex relative h-full max-h-full hidden lg:pt-1 xl-pt-0 flex-col justify-around items-center w-2/5">
                 {plates.slice(0+(displayPage*displayLength),displayLength+(displayPage*displayLength)).map((charge) => (
                     <div onClick={() => setActivePlate(charge.plate)} key={uuidv4()} className={`left-2 relative flex flex-col items-start justify-center w-full h-full bg-tertiary hover:bg-quaternary my-1 rounded-md text-white border-solid border-2 ${charge.plate === activePlate ? ' border-greenTop' : 'border-tertiary'}`}>
                         <p className="pl-3 pt-1 pr-2 text-xs xl:text-sm font-bold">{charge.plate}</p>
                         <p className="pb-1 text-xs xl:text-sm pl-3 w-2/3 overflow-hidden">{charge.id}</p>
-                        <div className="absolute right-4 text-2xl flex">
-                        <HiCheck className="" />
-                        <HiExclamationCircle     className="" />
+                        <div className="absolute right-5 text-2xl xl:text-3xl flex items-center justify-center">
+                            <HiExclamationCircle className="mr-2 hidden" />
+                            <HiCheck className="text-greenTop" />
                         </div>
                     </div>
                 ))}
