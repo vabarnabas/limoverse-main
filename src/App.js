@@ -12,7 +12,7 @@ import Settings from './components/Settings'
 
 //Hooks & Others
 import 'firebase/compat/firestore'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -51,10 +51,14 @@ function App() {
   const getWindowSize = () => {
     window.innerWidth <= 640 ? setWindowSize('small') : (window.innerWidth <= 768 ? setWindowSize('medium') : setWindowSize('large'))
   }
-  
-  console.log(windowSize)
 
   window.addEventListener('resize', getWindowSize)
+
+  useEffect(() => {
+    if (localStorage.getItem('displayLenth') === null) {
+      localStorage.setItem('displayLenth', 7)
+    }
+  })
 
   return (
     <div className="bg-primary h-screen overflow-hidden select-none">
