@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.c589166c.chunk.css",
-    "main.js": "/static/js/main.beeed4fa.chunk.js",
-    "main.js.map": "/static/js/main.beeed4fa.chunk.js.map",
+    "main.css": "/static/css/main.00c630bd.chunk.css",
+    "main.js": "/static/js/main.2ad6e055.chunk.js",
+    "main.js.map": "/static/js/main.2ad6e055.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.0dcf1cf2.js",
     "runtime-main.js.map": "/static/js/runtime-main.0dcf1cf2.js.map",
-    "static/js/2.e72c6fb5.chunk.js": "/static/js/2.e72c6fb5.chunk.js",
-    "static/js/2.e72c6fb5.chunk.js.map": "/static/js/2.e72c6fb5.chunk.js.map",
+    "static/js/2.7c7a1ddd.chunk.js": "/static/js/2.7c7a1ddd.chunk.js",
+    "static/js/2.7c7a1ddd.chunk.js.map": "/static/js/2.7c7a1ddd.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.c589166c.chunk.css.map": "/static/css/main.c589166c.chunk.css.map",
-    "static/js/2.e72c6fb5.chunk.js.LICENSE.txt": "/static/js/2.e72c6fb5.chunk.js.LICENSE.txt",
+    "static/css/main.00c630bd.chunk.css.map": "/static/css/main.00c630bd.chunk.css.map",
+    "static/js/2.7c7a1ddd.chunk.js.LICENSE.txt": "/static/js/2.7c7a1ddd.chunk.js.LICENSE.txt",
     "static/media/limoverse_logo.96d1c46b.svg": "/static/media/limoverse_logo.96d1c46b.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.0dcf1cf2.js",
-    "static/js/2.e72c6fb5.chunk.js",
-    "static/css/main.c589166c.chunk.css",
-    "static/js/main.beeed4fa.chunk.js"
+    "static/js/2.7c7a1ddd.chunk.js",
+    "static/css/main.00c630bd.chunk.css",
+    "static/js/main.2ad6e055.chunk.js"
   ]
 }
