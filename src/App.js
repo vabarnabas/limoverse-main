@@ -55,7 +55,7 @@ function App() {
   window.addEventListener('resize', getWindowSize)
 
   useEffect(() => {
-    if (localStorage.getItem('displayLenth') === null) {
+    if (localStorage.getItem('displayLength') === null) {
       localStorage.setItem('displayLength', 7)
     }
   })
