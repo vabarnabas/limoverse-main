@@ -10,7 +10,7 @@ const Damage = (props) => {
     document.title = 'Limoverse - DCS';
 
     const [activeWeek, setActiveWeek] = useState(0);
-    const [activePlate, setActivePlate] = useState(plates[0].plate);
+    const [activePlate, setActivePlate] = useState('');
     const [damagesDid, setDamagesDid] = useState(0);
     const [displayLength, setDisplayLength] = useState(parseInt(localStorage.getItem('displayLength')));
     const [displayPage, setDisplayPage] = useState(0);
