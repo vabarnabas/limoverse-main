@@ -39,6 +39,14 @@ const Menu = (props) => {
             version: '0.0.1',
             pageState: 'Hash',
         },
+        {
+            id: uuidv4(),
+            title: 'Lekérdezés Dashboard',
+            vulogRequired: false,
+            message: '',
+            version: '0.0.1',
+            pageState: 'Requester',
+        },
     ]
 
     const [menuPage, setMenuPage] = useState(0);

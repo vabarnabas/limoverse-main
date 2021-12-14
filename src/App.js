@@ -8,7 +8,8 @@ import Menu from './components/Menu';
 import Profile from './components/Profile';
 import Charge from './components/Charge';
 import Damage from './components/Damage';
-import Settings from './components/Settings'
+import Settings from './components/Settings';
+import Requester from './components/Requester';
 
 //Hooks & Others
 import 'firebase/compat/firestore'
@@ -82,6 +83,8 @@ function App() {
                               return <Damage auth={auth} firestore={firestore} user={user} />;
                             case 'Settings':
                               return <Settings />;
+                            case 'Requester':
+                              return <Requester user={user} />;
                             default:
                               return null;
                         }})()  : ''

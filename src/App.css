@@ -5,3 +5,7 @@
 .screen-container {
     @apply flex items-center justify-center h-full bg-secondary
 }
+
+.input-element {
+    @apply py-1 px-2 text-white rounded-md bg-tertiary border hover:bg-quaternary
+}
